@@ -9,7 +9,33 @@ rm(list = ls())
 getwd()
 
 # At the beginning of a script, it is useful to make sure you have
-# downloaded and installed all necessary packages
+# downloaded and installed all necessary packages.
+# I use a tidy bit of code and the p_load function in the package pacman
+# to install any packages that have not yet been installed, but you can also
+# have a separate line of code and a separate install.packages("PackageName")
+# command for each one.
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(DescTools,
+               summarytools,
+               Hmisc,
+               ggfortify,
+               multcomp,
+               nlme,
+               broom,
+               ggmosaic,
+               epitools,
+               tidyverse)
+
+# library("DescTools")
+# library("ggfortify")
+# library("multcomp")
+# library("nlme")
+# library("broom")
+# library("ggmosaic")
+# library("epitools")
+# library("tidyverse")
+# tidyverse_update()
 
 install.packages("tidyverse") 
 # Note that this loads the following packages: ggplot2 purrr 
