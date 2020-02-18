@@ -135,3 +135,4 @@ ggplot(data = sanchez)+
                geom="point", 
                shape=18, 
                size=3)
+
