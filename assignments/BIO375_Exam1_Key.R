@@ -171,3 +171,4 @@ data02<- mutate(data02, log_time = log(timeToMating))
 ggplot(data02) +
   geom_histogram(aes(log_time), binwidth = .5)+
   facet_wrap(~feedingStatus)
+
