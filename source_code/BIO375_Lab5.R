@@ -5,11 +5,11 @@ rm(list = ls())
 # Verify working directory, should be ~/Documents/Analyses/lastname_first
 getwd()
 
-if(!require(Rmisc)){install.packages("Rmisc")}
+#if(!require(Rmisc)){install.packages("Rmisc")}
 if(!require(DescTools)){install.packages("DescTools")}
-if(!require(boot)){install.packages("boot")}
-if(!require(rcompanion)){install.packages("rcompanion")}
-if(!require(summarytools)){install.packages("summarytools")}
+# if(!require(boot)){install.packages("boot")}
+# if(!require(rcompanion)){install.packages("rcompanion")}
+# if(!require(summarytools)){install.packages("summarytools")}
 if(!require(tidyverse)){install.packages("tidyverse")}
 
 # Check for updates
@@ -17,8 +17,8 @@ tidyverse_update()
 
 ### Confidence interval of the mean ###
 ### Confidence interval of the mean step by step ####
-# To show an example of code for a confidence interval (similar to swirl bless its heart), I will use the
-# calcium that was one of your in class problems.
+# To show an example of code for a confidence interval (similar to swirl bless its heart), 
+# I will use the calcium dataset that was one of your in class problems.
 
 coelomic <- tribble(
   ~calcium,
@@ -42,15 +42,15 @@ coelomic <- tribble(
 # the number, mean <- 29.76923.
 data <- coelomic
 summary <- coelomic %>%
-  summarise(mean = mean(calcium),
-            sd = sd(calcium),
-            n = n(),
-            se = sd(calcium)/sqrt(n()))
+  summarise(mean_y = mean(calcium),
+            sd_y = sd(calcium),
+            n_y = n(),
+            se_y = sd(calcium)/sqrt(n()))
 
 alpha <- 0.05
-mean <- summary$mean
-se <- summary$se
-df <- summary$n -1
+mean_y <- summary$mean_y
+se_y <- summary$se_y
+df_y <- summary$n_y -1
 # In words, the confidence interval equation is 
 # mean plus or minus the product of the critical value of t, given alpha and df, and the standard error of the mean.
 # the mean you can calculate
@@ -61,7 +61,7 @@ df <- summary$n -1
 # NOTE that in the swirl text it refers to the critical value of t as t_(n-1) which I think is bogus, but whatever.
 
 # If you used summarise to calculate the descriptive statistics, then the code is
-mean + c(-1,1)*qt(1-alpha, df )*se
+mean_y + c(-1,1)*qt(1-alpha, df_y )*se_y
 
 # If you just entered in the numbers directly then the code is shown below in comments
 # mean <- 29.76923	
