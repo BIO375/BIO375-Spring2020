@@ -30,12 +30,15 @@ pigs <-read_csv("obs, feed, weight
                     feed = col_character()) )
 
 # Generate summary statistics that we will need for sum of squares
-summ_feed <- pigs %>%
+summ_wgt <- pigs %>%
   group_by(feed) %>%
   summarise(mean_wgt = mean(weight),
             sd_wgt = sd(weight),
             n = n())
+grand_mean_wgt <- mean(pigs$weight)
 
+model_pigs <- lm(weight~feed, data = pigs)
+anova(model_pigs)
 ### Scenario 2.  Diatom diversity
 
 diatoms <- read_csv("zinc,diversity
@@ -79,3 +82,6 @@ summ_div <- diatoms %>%
   summarise(mean_dia = mean(diversity),
             n_dia = n())
 grand_mean_div = mean(diatoms$diversity)
+
+model_div <- lm(diversity~zinc, data = diatoms)
+anova(model_div)
