@@ -79,9 +79,23 @@ medium,0.98")
 
 summ_div <- diatoms %>%
   group_by(zinc) %>%
-  summarise(mean_dia = mean(diversity),
-            n_dia = n())
+  summarise(mean_div = mean(diversity),
+            n_div = n(),
+            sd_div = sd(diversity),
+            se_div = sd_div/sqrt(n()))
 grand_mean_div = mean(diatoms$diversity)
 
 model_div <- lm(diversity~zinc, data = diatoms)
 anova(model_div)
+
+### Plot using base R plotting, adapted from abd script
+
+par(bty="l")
+adjustAmount <- 0.15
+stripchart(diversity ~ zinc, data = diatoms, method = "jitter",
+           vertical = TRUE, las = 1, pch = 1, xlab = "Zinc level",
+           ylab = "Diatom diversity", col = "firebrick", 
+           cex = 1.2, ylim = c(0, 3))
+segments( c(1,2,3,4) + adjustAmount, summ_div$mean_div - summ_div$se_div, 
+          c(1,2,3,4) + adjustAmount, summ_div$mean_div + summ_div$se_div )
+points(summ_div$mean_div ~ c( c(1,2,3,4) + adjustAmount ), pch = 1, col = "blue")
