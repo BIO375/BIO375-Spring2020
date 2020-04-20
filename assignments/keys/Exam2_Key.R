@@ -1,4 +1,4 @@
-### Lab 6. live coding
+### Exam 2 key
 
 # Clean up the working environment
 rm(list = ls())
